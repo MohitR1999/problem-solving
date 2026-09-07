@@ -18,12 +18,10 @@ class FraudMonitor:
             charge_id = parts[1]
             merchant_id = self.charges[charge_id]
             self.merchant_data[merchant_id][event_type] += 1
-            self.disputes[charge_id] = merchant_id
         elif event_type == "RESOLVE":
             charge_id = parts[1]
             merchant_id = self.charges[charge_id]
             self.merchant_data[merchant_id]["DISPUTE"] -= 1
-            del self.disputes[charge_id]
 
         active_disputes = self.merchant_data[merchant_id]["DISPUTE"]
         total_charges = self.merchant_data[merchant_id]["CHARGE"]
